@@ -1,0 +1,29 @@
+mysql -u root -p
+
+create database hardware_store;
+
+create table hardware_store.items (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20), stock INT, price DOUBLE);
+
+describe hardware_store.items;
+
+INSERT INTO `items` (`id`, `name`, `stock`, `price`) VALUES (NULL, 'tire', '20', '5.23'), (NULL, 'pedal', '10', '7.5'), (NULL, 'brake wire', '40', '2.5'), (NULL, 'brake handle', '200', '0.5'), (NULL, 'rim', '40', '6.5'), (NULL, 'tire tube', '10', '20.5');
+
+select * from hardware_store.items;
+
+create table hardware_store.users (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, username VARCHAR(20), password VARCHAR(20), type VARCHAR(20));
+
+describe hardware_store.users;
+
+insert into hardware_store.users values (NULL, 'peter', 'peter123', 'satff');
+insert into hardware_store.users values (NULL, 'lois', 'lois123', 'satff');
+insert into hardware_store.users values (NULL, 'stewie', 'SethMacFarlane456', 'admin');
+insert into hardware_store.users values (NULL, 'brian', 'SethMcFarlane123', 'admin');
+insert into hardware_store.users values (NULL, 'megatron', 'meg123', 'satff');
+insert into hardware_store.users values (NULL, 'joe', 'joe123', 'satff');
+
+
+select * from hardware_store.users;
+
+create table hardware_store.employee (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20), gender INT, salary DOUBLE);
+create table hardware_store.offer_items (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20), stock INT, price DOUBLE);
+

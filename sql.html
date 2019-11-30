@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<!--
+Template Name: Epigosha
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html>
+<head>
+<title>SQL Injection</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded" style="background-image:url('images/demo/backgrounds/code_background_4_cut.jpg');">
+  <div id="pageintro" class="hoc split clear">
+    <article class="box bg-coloured clear"> 
+      <!-- ################################################################################################ -->
+      <h2 class="heading">What is SQL Injection?</h2>
+      <p>SQL injection is a code injection technique that might destroy your database. SQL injection is one of the most common web hacking techniques. SQL injection is the placement of malicious code in SQL statements, via web page input.</p><p class="font-x1"> - W3Schools</p>
+      <!--<footer>
+        <ul class="nospace inline pushright">
+          <li><a class="btn" href="#">Fusce posuere</a></li>
+          <li><a class="btn inverse" href="#">Ipsum primis</a></li>
+        </ul>
+      </footer>-->
+      <!-- ################################################################################################ -->
+    </article>
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <header id="header" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="sql.html">SQL Injection Practice</a></h1>
+    </div>
+    <nav id="mainav" class="fl_right">
+      <ul class="clear">
+        <li class="active"><a href="sql.html">Home</a></li>
+        <li id="tutorial"><a class="drop" href="">Tutorial</a>
+          <ul>
+            <li><a href="pages/sqlquery.html">SQL Query</a></li>
+            <li><a href="pages/sqllogin.html">SQL Injection - Login</a></li>
+            <li><a href="pages/sqlsearch.html">SQL Injection - Search</a></li>
+            <li><a href="pages/sqlprevention.html">Prevention from SQL Injection</a></li>
+            
+          </ul>
+        </li>
+        <!--<li><a class="drop" href="#">Dropdown</a>
+          <ul>
+            <li><a href="#">Level 2</a></li>
+            <li><a class="drop" href="#">Level 2 + Drop</a>
+              <ul>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Level 2</a></li>
+          </ul>
+        </li>-->
+        <li><a href="home.html" target="_blank">Exploit Website</a></li>
+        <!--<li><a href="#">Link Text</a></li>-->
+      </ul>
+    </nav>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class=" first clear btmspace-80">
+      <h3 class="font-x2">SQL in Web Pages</h3>
+      <p class="font-x1">SQL injection usually occurs when you ask a user for input, like their username/userid, and instead of a name/id, the user gives you an SQL statement that you will unknowingly run on your database.</p>
+        <p class="font-x1">A SQL Query will be like: "SELECT * FROM Users WHERE UserId = Something"</p>
+        <p class="font-x1">The original purpose of the code was to create an SQL statement to select a user, with a given user id. If there is nothing to prevent a user from entering "weird" input, the user can enter some "smart" input like: "UserId = 105 OR 1=1". The statement would look like: "SELECT * FROM Users WHERE UserId = 105 OR 1=1". The SQL is valid and will return true.</p>
+        <p class="font-x1">Click on the Exploit Webiste link in the Navigation bar. Click on Sign In. Input "105 OR 1=1" as Username and Password. Did it work?  </p>                                    
+           <p class="font-x1"> No, it did not? Why? Our logic is correct but we also have to take care of other details like in what manner the SQL query is used in the server side language syntax.</p>
+    </div>
+    <div class="group container">
+    <div class="row">
+      <article class="one_third first col-md-4"><em><a href="https://en.wikipedia.org/wiki/SQL_injection" target="_blank">Link</a></em>
+        <h4>Wikipedia</h4>
+        <p>SQL injection is a code injection technique, used to attack data-driven applications, in which nefarious SQL statements are inserted into an entry field for execution (e.g. to dump the database contents to the attacker). SQL injection must exploit a security vulnerability in an application's software, for example, when user input is either incorrectly filtered for string literal escape characters embedded in SQL statements or user input is not strongly typed and unexpectedly executed.</p>
+      </article>
+        </div>
+        <div class="row">
+      <article class="one_third col-md-4"><em><a href="http://php.net/manual/en/security.database.sql-injection.php" target="_blank">Link</a></em>
+        <h4>PHP</h4>
+        <p>Direct SQL Command Injection is a technique where an attacker creates or alters existing SQL commands to expose hidden data, or to override valuable ones, or even to execute dangerous system level commands on the database host. This is accomplished by the application taking user input and combining it with static parameters to build an SQL query.</p>
+      </article>
+        </div>
+        <div class="row">
+      <article class="one_third col-md-4"><em><a href="https://www.owasp.org/index.php/SQL_Injection" target="_blank">Link</a></em>
+        <h4>OWASP</h4>
+        <p>A SQL injection attack consists of insertion or "injection" of a SQL query via the input data from the client to the application. A successful SQL injection exploit can read sensitive data from the database, modify database data (Insert/Update/Delete), execute administration operations on the database (such as shutdown the DBMS), recover the content of a given file present on the DBMS file system and in some cases issue commands to the operating system.</p>
+      </article>
+        </div>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded" style="background-image:url('images/demo/backgrounds/code_background_5.jpg');padding-bottom: 30px;">
+  <div class="hoc split clear">
+    <section class="box left clear"> 
+      <!-- ################################################################################################ -->
+      <h6 class="heading">Get To Know The Target Machine</h6>
+      <p>Use nmap command to scan and gather information about the target machine.</p>
+      <p class="btmspace-50">nmap -n -T4 -A -O target_machine_IP_address</p>
+      <p class="btmspace-50">The information which we require for this tutorial is Apache service running or not, Database name and version.</p>
+      <p>Visit their website.</p>
+      <p class="btmspace-50">Observe what is the extension of the each webpages, is it html, php or something else. Get to know what website is about because then you can have an image about the tables in database or the database schema.</p>
+      <figure>
+        <figcaption class="bold heading">Learn more about namp:</figcaption>
+        <ul class="nospace group">
+          <li class="one_third first"><a href="https://nmap.org/" target="_blank"><img src="images/demo/nmap.org.png" alt="nmap.org"></a></li>
+          <li class="one_third"><a href="https://en.wikipedia.org/wiki/Nmap" target="_blank"><img src="images/demo/wikipedia.png" alt="wikipedia" height="150px;"></a></li>
+          <li class="one_third"><a href="http://insecure.org/" target="_blank"><img src="images/demo/insecure.org.png" alt="insecure.org"></a></li>
+        </ul>
+      </figure>
+      <!-- ################################################################################################ -->
+    </section>
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!--<div class="wrapper">
+  <article id="cta" class="hoc container clear"> 
+    <!-- ################################################################################################ -->
+    <!--<h6 class="heading">Feugiat eu nulla etiam rutrum posuere tortor a sollicitudin</h6>
+    <p><a class="btn" href="#">Vitae placerat</a></p>
+    <!-- ################################################################################################ -->
+  <!--</article>
+</div>-->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded" style="background-image:url('images/demo/backgrounds/code_background_1.jpg');padding-top: 30px;">
+  <div id="elements" class="hoc split clear">
+    <div class="box bg-light clear"> 
+      <!-- ################################################################################################ -->
+      <em class="block nospace btmspace-30 uppercase bold">Things to keep in mind before attempting SQL Injection</em>
+      <h3 class="font-x2">Is SQL Injection Legal?</h3>
+      <p class="btmspace-50">No, hacking into a website is illegal. Vandalizing someone’s website is illegal.</p>
+      <article><a href="#"><i class="fa fa-diamond"></i></a>
+        <!--<h6 class="heading">Fermentum enim mattis</h6>-->
+        <p>It will depend on the legal system under which it falls. But you are still doing something hostile. Without previous written permission of the siteowner, you are committing a crime. </p>
+      </article>
+      <article><a href="#"><i class="fa fa-diamond"></i></a>
+        <!--<h6 class="heading">Scelerisque vivamus rhoncus</h6>-->
+        <p>In the US, SQL injection and other types of “hacking” are illegal under various laws and regulations stemming from the Computer Fraud and Abuse Act and the Patriot Act.</p>
+      </article>
+      <!-- ################################################################################################ -->
+    </div>
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!--<div class="wrapper bgded overlay" style="background-image:url('images/demo/backgrounds/04.png');">
+  <div class="hoc container clear"> 
+    <!-- ################################################################################################ -->
+    <!--<ul id="stats" class="nospace group">
+      <li class="one_quarter first"><a href="#"><i class="fa fa-3x fa-support"></i></a>
+        <p>2345</p>
+        <p>Dignissim</p>
+      </li>
+      <li class="one_quarter"><a href="#"><i class="fa fa-3x fa-taxi"></i></a>
+        <p>1234</p>
+        <p>Lobortis</p>
+      </li>
+      <li class="one_quarter"><a href="#"><i class="fa fa-3x fa-gears"></i></a>
+        <p>345</p>
+        <p>Porttitor</p>
+      </li>
+      <li class="one_quarter"><a href="#"><i class="fa fa-3x fa-gg"></i></a>
+        <p>12345</p>
+        <p>Malesuada</p>
+      </li>
+    </ul>
+    <!-- ################################################################################################ -->
+  <!--</div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <div class="hoc container clear"> 
+    <!-- ################################################################################################ -->
+    <div class="one_half first clear btmspace-50">
+      <h3 class="font-x2">Other Refrences</h3>
+        <p class="font-x1">Below are some link of youtube videos which can be referred. The tutorial is present in the <a href="#tutorial">Tutorial</a> section in navigation bar.</p>
+    </div>
+    <ul class="nospace group latest">
+      <li class="one_third first">
+          <figure><a href="https://www.youtube.com/watch?v=_jKylhJtPmI" target="_blank"><img src="images/demo/youtube.png" alt=""></a>
+          <figcaption> Computerphile</figcaption>
+        </figure>
+        <h3 class="font-x1 heading">Hacking Websites with SQL Injection</h3>
+      </li>
+      <!--<li class="one_third">
+        <figure><a href="https://www.youtube.com/watch?v=ciNHn38EyRc" target="_blank"><img src="images/demo/youtube.png" alt=""></a>
+          <figcaption> Computerphile</figcaption>
+        </figure>
+        <h3 class="font-x1 heading">Running an SQL Injection Attack</h3>
+      </li>-->
+      <li class="one_third">
+        <figure><a href="https://www.youtube.com/watch?v=LIQKGivmZ08" target="_blank"><img src="images/demo/youtube.png" alt=""></a>
+          <figcaption> CEPLogic</figcaption>
+        </figure>
+        <h3 class="font-x1 heading">SQL Injection with SQL Ninja and Metasploit Hacking Tutorial</h3>
+      </li>
+    </ul>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row4">
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="center btmspace-80 clear" style="height:40px;">
+      <h6 class="font-x3 uppercase">SQL INJECTION PRACTICE</h6>
+      <p>Ethical Hacking - Grad Project - Fall 2017 - Dr. Phil Ventura - Mayank Yadav (U94319493) - University of South Florida</p>
+      <!--<ul class="faico clear">
+        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>
+      </ul>-->
+    </div>
+    <!--<div class="one_third first">
+      <h6 class="title">Porta nec dignissim</h6>
+      <ul class="nospace linklist contact">
+        <li><i class="fa fa-map-marker"></i>
+          <address>
+          Street Name &amp; Number, Town, Postcode/Zip
+          </address>
+        </li>
+        <li><i class="fa fa-phone"></i> +00 (123) 456 7890<br>
+          +00 (123) 456 7890</li>
+        <li><i class="fa fa-fax"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+      </ul>
+    </div>
+    <div class="one_third">
+      <h6 class="title">Odio sagittis eros</h6>
+      <ul class="nospace linklist">
+        <li><a href="#">Justo iaculis phasellus eget lacus</a></li>
+        <li><a href="#">Ac sem ullamcorper sollicitudin nunc</a></li>
+        <li><a href="#">Elementum augue ac lacus molestie</a></li>
+        <li><a href="#">Pretium augue posuere nullam aliquam</a></li>
+        <li><a href="#">Mi dolor sed lacinia diam facilisis</a></li>
+      </ul>
+    </div>
+    <div class="one_third">
+      <h6 class="title">Sed volutpat feugiat</h6>
+      <ul class="nospace linklist">
+        <li>
+          <article>
+            <h6 class="nospace font-x1"><a href="#">Vel fermentum tellus</a></h6>
+            <time class="font-xs block btmspace-10" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045</time>
+            <p class="nospace">Morbi vitae nibh et turpis feugiat pharetra eget et dolor integer mollis&hellip;</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h6 class="nospace font-x1"><a href="#">Ipsum ac lacus duis</a></h6>
+            <time class="font-xs block btmspace-10" datetime="2045-04-05">Thursday, 5<sup>th</sup> April 2045</time>
+            <p class="nospace">Rhoncus pulvinar fusce leo mi congue sed orci sit amet scelerisque&hellip;</p>
+          </article>
+        </li>
+      </ul>
+    </div>-->
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!--<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <!--<p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>-->
+    <!-- ################################################################################################ -->
+  <!--</div>
+</div>-->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="layout/scripts/jquery.min.js"></script>
+<script src="layout/scripts/jquery.backtotop.js"></script>
+<script src="layout/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>

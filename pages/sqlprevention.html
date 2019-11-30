@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!--
+Template Name: Epigosha
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html>
+<head>
+<title>SQL Query</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<!--<style type="text/css">
+/* DEMO ONLY */
+.container .demo{text-align:center;}
+.container .demo div{padding:8px 0;}
+.container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
+.container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
+@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
+/* DEMO ONLY */
+</style>-->
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <header id="header" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="../sql.html">SQL Injection</a></h1>
+    </div>
+    <nav id="mainav" class="fl_right">
+      <ul class="clear">
+        <li class="active"><a href="../sql.html">Home</a></li>
+        <li id="tutorial"><a class="drop" href="">Tutorial</a>
+          <ul>
+            <li><a href="sqlquery.html">SQL Query</a></li>
+            <li><a href="sqllogin.html">SQL Injection - Login</a></li>
+            <li><a href="sqlsearch.html">SQL Injection - Search</a></li>
+            <li class="active"><a href="sqlprevention.html">Prevention from SQL Injection</a></li>
+            
+          </ul>
+        </li>
+        <!--<li><a class="drop" href="#">Dropdown</a>
+          <ul>
+            <li><a href="#">Level 2</a></li>
+            <li><a class="drop" href="#">Level 2 + Drop</a>
+              <ul>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Level 2</a></li>
+          </ul>
+        </li>-->
+        <li><a href="../home.html" target="_blank">Exploit Website</a></li>
+        <!--<li><a href="#">Link Text</a></li>-->
+      </ul>
+    </nav>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class=" first clear btmspace-80" style="color: #232323; background-color: #FFFFFF;display: block; width: 100%; margin: 0; padding: 0; text-align: left; word-wrap: break-word; box-sizing: border-box; padding:70px 70px 70px 70px ">
+      <h3 class="font-x2">Prevention from SQL Injection</h3>
+      <p class="font-x1">How to prevent your Website from SQL Injection:</p>
+        <p class="font-x1">Always filter/validate the data before sending it to your database. Never trust user input. If possible explicitly cast your input.</p>
+        <p class="font-x1">This website uses an old version of PHP which used a syntax like “mysql_query(write your query here)” . “mysql_query()” just takes the query with the parameter and send it to the database without any filtering.</p>
+        <p class="font-x1">This problem has been solved in PHP 7. PHP 7 uses mysqli_query() instead of “mysql_query()”. The “i” made the difference. It filters the query before sending it to the database. If you try to use “mysql_query()” in PHP 7, it would give you an error .</p>                                    
+           <p class="font-x1">There are other ways to pass a query to a database and these method can be implemented to all Database Management Systems and Server Side Languages.</p>
+    <p  class="font-x1">Delete all the test and dummy databases and tabels that your Database Management System might have. Avoid using administrative privileges.</p>
+    <p class="font-x1">Before inserting your password, encrypt it or create a hash code by using MD5 or SHA any. So the database will store MD5 or SHA instead of plain text for password. When a user logs in, convert the Client side password text to MD5 or SHA and then use SELECT query for matching if the password matches or not. This would prevent anyone from knowing your users password, if in case your database gets exploited. The reason you should hash or encrypt a password because users might use same password for different web logins or there could be some connection between their other passwords.</p>
+    <p class="font-x1">There is also a concept of Prepared Statements in Server Side Languages. What Prepared Statement does is it use ”?” instead of directly putting the string from client in query. It first checks all the data provided by client can be understood by SQL or not. If the check passes it then replace the “question mark” with input string. For example:</p>
+    <p class="font-x1">$stmt = $dbh->prepare("INSERT INTO REGISTRY (name, value) VALUES (?, ?)");</p>
+    <p class="font-x1">$stmt->bindParam(1, $name);</p>
+    <p class="font-x1">$stmt->bindParam(2, $value);</p>
+    <p class="font-x1">The magic happens in bindParam.</p>
+    <p class="font-x1"><a href="http://php.net/manual/en/pdo.prepared-statements.php" target="_blank">Explore More about Prepared Statements in PHP</a></p>
+    </div>
+    
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row4">
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="center btmspace-80 clear" style="height:40px;">
+      <h6 class="font-x3 uppercase">SQL INJECTION PRACTICE</h6>
+      <p>Ethical Hacking - Grad Project - Fall 2017 - Dr. Phil Ventura - Mayank Yadav (U94319493) - University of South Florida</p>
+      <!--<ul class="faico clear">
+        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>
+      </ul>-->
+    </div>
+    <!--<div class="one_third first">
+      <h6 class="title">Porta nec dignissim</h6>
+      <ul class="nospace linklist contact">
+        <li><i class="fa fa-map-marker"></i>
+          <address>
+          Street Name &amp; Number, Town, Postcode/Zip
+          </address>
+        </li>
+        <li><i class="fa fa-phone"></i> +00 (123) 456 7890<br>
+          +00 (123) 456 7890</li>
+        <li><i class="fa fa-fax"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+      </ul>
+    </div>
+    <div class="one_third">
+      <h6 class="title">Odio sagittis eros</h6>
+      <ul class="nospace linklist">
+        <li><a href="#">Justo iaculis phasellus eget lacus</a></li>
+        <li><a href="#">Ac sem ullamcorper sollicitudin nunc</a></li>
+        <li><a href="#">Elementum augue ac lacus molestie</a></li>
+        <li><a href="#">Pretium augue posuere nullam aliquam</a></li>
+        <li><a href="#">Mi dolor sed lacinia diam facilisis</a></li>
+      </ul>
+    </div>
+    <div class="one_third">
+      <h6 class="title">Sed volutpat feugiat</h6>
+      <ul class="nospace linklist">
+        <li>
+          <article>
+            <h6 class="nospace font-x1"><a href="#">Vel fermentum tellus</a></h6>
+            <time class="font-xs block btmspace-10" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045</time>
+            <p class="nospace">Morbi vitae nibh et turpis feugiat pharetra eget et dolor integer mollis&hellip;</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h6 class="nospace font-x1"><a href="#">Ipsum ac lacus duis</a></h6>
+            <time class="font-xs block btmspace-10" datetime="2045-04-05">Thursday, 5<sup>th</sup> April 2045</time>
+            <p class="nospace">Rhoncus pulvinar fusce leo mi congue sed orci sit amet scelerisque&hellip;</p>
+          </article>
+        </li>
+      </ul>
+    </div>-->
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!--<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <!--<p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>-->
+    <!-- ################################################################################################ -->
+  <!--</div>
+</div>-->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>

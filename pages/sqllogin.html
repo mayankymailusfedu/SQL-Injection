@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--
+Template Name: Epigosha
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html>
+<head>
+<title>SQL Query</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<!--<style type="text/css">
+/* DEMO ONLY */
+.container .demo{text-align:center;}
+.container .demo div{padding:8px 0;}
+.container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
+.container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
+@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
+/* DEMO ONLY */
+</style>-->
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <header id="header" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="../sql.html">SQL Injection</a></h1>
+    </div>
+    <nav id="mainav" class="fl_right">
+      <ul class="clear">
+        <li class="active"><a href="../sql.html">Home</a></li>
+        <li id="tutorial"><a class="drop" href="">Tutorial</a>
+          <ul>
+            <li><a href="sqlquery.html">SQL Query</a></li>
+            <li class="active"><a href="sqllogin.html">SQL Injection - Login</a></li>
+            <li><a href="sqlsearch.html">SQL Injection - Search</a></li>
+            <li><a href="sqlprevention.html">Prevention from SQL Injection</a></li>
+            
+          </ul>
+        </li>
+        <!--<li><a class="drop" href="#">Dropdown</a>
+          <ul>
+            <li><a href="#">Level 2</a></li>
+            <li><a class="drop" href="#">Level 2 + Drop</a>
+              <ul>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Level 2</a></li>
+          </ul>
+        </li>-->
+        <li><a href="../home.html" target="_blank">Exploit Website</a></li>
+        <!--<li><a href="#">Link Text</a></li>-->
+      </ul>
+    </nav>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class=" first clear btmspace-80" style="color: #232323; background-color: #FFFFFF;display: block; width: 100%; margin: 0; padding: 0; text-align: left; word-wrap: break-word; box-sizing: border-box; padding:70px 70px 70px 70px ">
+      <h3 class="font-x2">SQL Injection -  Login</h3>
+      <p class="font-x1">In this module we will be learning “How to Login without knowing Username and Password”</p>
+      <p class="font-x1">Click on the “EXPLOIT WEBSITE” link in the navigation bar. Click on “Sign In”. The following page will be displayed:</p>
+    <img src="../images/demo/login.PNG" alt="login"/>
+      <p class="font-x1">Now what can we do to attack this. Any input channel can be used to send the malicious commands, including input tag elements, query strings, cookies and files. First think little about what the query might be behind the scenes so that we can adjust it. Open any text editor or SQL console that do text markup as you change query for visualizing and writing query. It’s a login page, it’s going to looks if the given username and password exist in the database or not. So, how can we do such functionality using SQL? Yup, it’s a “Select” query.  Let’s refer “?” as something. So the query might be like:</p>
+      <p class="font-x1">SELECT ?(username),?(password) FROM ?(some table name) WHERE ?(username) = ‘?(username input)’ AND ?(password) = ‘?(password input)’;</p>                                    
+      <p class="font-x1">Let’s simplify the above query:</p>
+    <p class="font-x1">SELECT username, password FROM users WHERE username=’username input’ AND password=’password input’;</p>
+    <p class="font-x1">We are assuming that table name might be “users” and columns names are like what we assumed. It’s fine, you can assume any names. SQL injection usually occurs when you ask a user for input, like their username/userid, and instead of a name/id, the user gives you an SQL statement that you will unknowingly run on your database.</p>
+    <p class="font-x1">Let’s try a little bit of brute force. Try inputting username as “admin” and password as “admin123”. There are also so many other combination that one could try, some of them could be:</p>
+    <p class="font-x1">admin, password</p>
+    <p class="font-x1">admin, password123</p>
+    <p class="font-x1">admin, passw0rd</p>
+    <p class="font-x1">admin, passw0rd123</p>
+    <p class="font-x1">Did they work? No, then that means we have to try a smart way of logging in. Try some of your own combination.</p>
+    <p class="font-x1">Let’s try something else. We know that “1=1” or “2=2” condition or check is always true. Let’s try inputting it in username and password. We need to know how the SQL query syntax is used in backend. Therefore, let’s see how a login query might look in backend:</p>
+    <p class="font-x1">$query = "SELECT * FROM users WHERE username='username' AND password='password'";</p>
+    <p class="font-x1">mysql_query($query);</p> 
+    <p class="font-x1">This is a PHP syntax. In this example, the query is returning every filed in a table, but if you are a Web Developer, never output anything that is not required. The attacker can write a script and might be able to print out the returning value, which in this example would be every columns of that table.</p>
+    <p class="font-x1">We don’t know the username and password, if we try inputting our own that returns false. What can we do to make it True? We could give it one more check to preform that will always be true. How to combine the two, use “OR”. You can use any valid string as username and password, we would be using “105” for username and password.</p>
+    <p class="font-x1">SELECT username, password FROM users WHERE username=’105' or '1'='1’ AND password=’ 105' or '1'='1’;</p>
+    <p class="font-x1">Try -> 105' or '1'='1 as username and password. Did it work?</p>
+    <img src="../images/demo/login%20105%201-1.PNG" alt="login 105' OR '1'='1"/>
+    <p class="font-x1">Jackpot! We are logged in and can access the services that other user’s access. Let’s not stop here, let’s try some other variant.</p>
+    <p class="font-x1">Let’s start with removing 105 from our input. Did it still work? Yup, it did. Why? Because the username in SQL would be empty but we also have another condition to counter balance and return true.</p>
+    <img src="../images/demo/or%201-1.PNG" alt="login ' OR '1'='1"/>
+    <p class="font-x1">We know that “1=1” always return true. Are there any other conditions like this one? Yes there are. We would be discussing one more here. Well if “1=1” then we can be lazy and say that an empty string is equal to an empty string, which is true. Let’s give it a try and first visualize what our query might look like?</p>
+    <p class="font-x1">SELECT username, password FROM users WHERE username=’ ' or ''='’ AND password=’ ' or ''='’;</p>
+    <p class="font-x1">Take care of the number of inverted commas, there are two inverted commas already for username and now we are putting two empty string, so that would make 6 inverted commas for just username and another 6 for password.</p>
+    <p class="font-x1">Try -> ' or ''=' as input for username and password. Did it work?</p>
+    <img src="../images/demo/empty%20string.PNG" alt="' OR ''='"/>
+    <p class="font-x1">Try discovering other conditions that are always true.</p>
+    <p class="font-x1">As we discussed in our previous section, we can use “#” to comment. As you will observe in your text editor that the syntax after “#” might be getting grey. If we use “#” directly will just comment out the rest of the query which will make my query as invalid. I also need to supply closing syntax for the query before “#”. The input will be like parameter string, wildcard, closing single quote and “#”. For example:</p>
+    <p class="font-x1">SELECT username, password FROM users WHERE username=’’#;’ AND password=’password input’;</p>
+    <p class="font-x1">Try -> ’#; as input. Now remember there might be a client side code that might be checking if the fields are empty or not. Therefore input anything in password field so that we can pass the client side check. Did it work? No, it did not, because our query is returning false as there is no username in table with empty field. We need to supply a condition which is always true like “1=1”.</p>
+    <p class="font-x1">SELECT username, password FROM users WHERE username=’ ' or 1=1;#’ AND password=’password input’;</p>
+    <p class="font-x1">Try -> ' or 1=1;# as input for username and any string as password. Did it work?</p>
+    <p class="font-x1"></p>
+    <img src="../images/demo/login%20comment.PNG" alt="' or 1=1;#"/>
+    </div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row4">
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="center btmspace-80 clear" style="height:40px;">
+      <h6 class="font-x3 uppercase">SQL INJECTION PRACTICE</h6>
+      <p>Ethical Hacking - Grad Project - Fall 2017 - Dr. Phil Ventura - Mayank Yadav (U94319493) - University of South Florida</p>
+      <!--<ul class="faico clear">
+        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>
+      </ul>-->
+    </div>
+    <!--<div class="one_third first">
+      <h6 class="title">Porta nec dignissim</h6>
+      <ul class="nospace linklist contact">
+        <li><i class="fa fa-map-marker"></i>
+          <address>
+          Street Name &amp; Number, Town, Postcode/Zip
+          </address>
+        </li>
+        <li><i class="fa fa-phone"></i> +00 (123) 456 7890<br>
+          +00 (123) 456 7890</li>
+        <li><i class="fa fa-fax"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+      </ul>
+    </div>
+    <div class="one_third">
+      <h6 class="title">Odio sagittis eros</h6>
+      <ul class="nospace linklist">
+        <li><a href="#">Justo iaculis phasellus eget lacus</a></li>
+        <li><a href="#">Ac sem ullamcorper sollicitudin nunc</a></li>
+        <li><a href="#">Elementum augue ac lacus molestie</a></li>
+        <li><a href="#">Pretium augue posuere nullam aliquam</a></li>
+        <li><a href="#">Mi dolor sed lacinia diam facilisis</a></li>
+      </ul>
+    </div>
+    <div class="one_third">
+      <h6 class="title">Sed volutpat feugiat</h6>
+      <ul class="nospace linklist">
+        <li>
+          <article>
+            <h6 class="nospace font-x1"><a href="#">Vel fermentum tellus</a></h6>
+            <time class="font-xs block btmspace-10" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045</time>
+            <p class="nospace">Morbi vitae nibh et turpis feugiat pharetra eget et dolor integer mollis&hellip;</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h6 class="nospace font-x1"><a href="#">Ipsum ac lacus duis</a></h6>
+            <time class="font-xs block btmspace-10" datetime="2045-04-05">Thursday, 5<sup>th</sup> April 2045</time>
+            <p class="nospace">Rhoncus pulvinar fusce leo mi congue sed orci sit amet scelerisque&hellip;</p>
+          </article>
+        </li>
+      </ul>
+    </div>-->
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!--<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <!--<p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>-->
+    <!-- ################################################################################################ -->
+  <!--</div>
+</div>-->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>
